@@ -3,9 +3,9 @@
 require('js-ext/lib/object');
 
 var Event = require('itsa-event'),
-    IOClass = require('./IOClass');
+    BaseClass = require('./BaseClass');
 
-var PageApp = IOClass.subClass(function() {
+var PageApp = BaseClass.subClass(function() {
         this.merge(Event.Emitter('view'));
     },
     {

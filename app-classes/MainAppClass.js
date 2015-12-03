@@ -3,12 +3,10 @@
 require('js-ext/lib/object');
 
 var Event = require('itsa-event'),
-    controller = require('itsa-client-controller'),
-    IOClass = require('./IOClass');
+    BaseClass = require('./BaseClass');
 
-var MainApp = IOClass.subClass(function() {
+var MainApp = BaseClass.subClass(function() {
         var instance = this;
-        instance.controller = controller;
         instance.merge(Event.Emitter('app'));
         instance.destroy = instance.destroy.bind(instance);
         // make sure any instance._viewCompIO gets aborted:
