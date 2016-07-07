@@ -1,16 +1,21 @@
 'use strict';
 
-require('js-ext/lib/object');
+require('itsa-jsext');
 
 var Event = require('itsa-event'),
     BaseClass = require('./BaseClass');
 
 var MainApp = BaseClass.subClass(function() {
         var instance = this;
-        instance.merge(Event.Emitter('app'));
+        instance.itsa_merge(Event.Emitter('app'));
         instance.destroy = instance.destroy.bind(instance);
         // make sure any instance._viewCompIO gets aborted:
-        window.addEventListener('unload', instance.destroy);
+        if (window.addEventListener) {
+            window.addEventListener('unload', instance.destroy);
+        }
+        else {
+            window.attachEvent('onunload', instance.destroy);
+        }
     },
     {
         destroy: function() {
